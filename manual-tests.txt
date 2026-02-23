@@ -62,3 +62,11 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * Should display "Developer" for the user name.
 
 
+# Module 4: Limit number of imputs
+
+## Test steps
+1. Build and run CiCo
+2. Enter 1234567890 into the field.
+
+## Expected results
+* Should only display 12345678 in the field
