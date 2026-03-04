@@ -71,9 +71,7 @@ public class Main {
 
   // Revert to the main panel after a button press ////////////////////////////
   public static class Handler implements ActionListener {
-    public void actionPerformed(ActionEvent evt) {
-      Main.doneProcessing();
-    }
+    public void actionPerformed(ActionEvent evt) {Main.doneProcessing();}
   }
 
   // Revert to the main panel after time has passed ///////////////////////////
@@ -203,7 +201,12 @@ public class Main {
   private static void doneProcessing() {
     timeout.cancel();
     timeout = null;
-    fieldNumber.setText("");
+    // how I had my input filter made me unable to reset the text for "fieldNumber" and played the
+    // error beep, so disabling the filter and applying it again after resting the text fixes this
+    ((AbstractDocument)(fieldNumber.getDocument())).setDocumentFilter(null);
+    fieldNumber.setText(null);
+    InputFilter filter = new InputFilter();
+    ((AbstractDocument)(fieldNumber.getDocument())).setDocumentFilter(filter);
     ((CardLayout)deck.getLayout()).show(deck, CARD_MAIN);
     fieldNumber.grabFocus();
   }
